@@ -85,10 +85,10 @@ def load_config():
     default_config_path = resource_filename('konsave', 'conf.yaml')
     if not os.path.exists(CONFIG_FILE):
         shutil.copy(default_config_path, CONFIG_FILE)
-        return yaml.load(resource_stream('konsave', 'conf.yaml'), Loader=yaml.FullLoader)["entries"]
+        return yaml.load(resource_stream('konsave', 'conf.yaml'), Loader=yaml.SafeLoader)["entries"]
 
     with open(CONFIG_FILE) as file:
-        config = yaml.load(file, Loader=yaml.FullLoader)
+        config = yaml.load(file, Loader=yaml.SafeLoader)
     return config["entries"]
 
 
